@@ -115,3 +115,4 @@ if ($splService.Status -eq 'Running'){  # checks for running splunkd process
         exit 0
     }
 }
+}
