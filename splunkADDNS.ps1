@@ -52,8 +52,8 @@ if (Test-Path -Path $splunklocation -Include "*splunk*")
     exit 0
 }else{
     Write-Host '* Downloading Splunk Universal Forwarder...' -ForegroundColor Magenta
-	wget -O splunkforwarder-8.msi 'https://download.splunk.com/products/universalforwarder/releases/9.1.1/windows/splunkforwarder-9.1.1-64e843ea36b1-x64-release-airgap.msi'
-	Start-Sleep -seconds 1
+    Invoke-WebRequest -Uri 'https://download.splunk.com/products/universalforwarder/releases/9.1.1/windows/splunkforwarder-9.1.1-64e843ea36b1-x64-release-airgap.msi' -OutFile 'splunkforwarder-8.msi'
+    Start-Sleep -Seconds 1
     Write-Host '* Installing Splunk Universal Forwarder...' -ForegroundColor Magenta
     
     # uses msi to install splunk forwarder, file names need to match and be co-located
