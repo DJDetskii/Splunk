@@ -1,10 +1,10 @@
 # Variables
-$splunkInstaller = "C:\Desktop\splunkforwarder-8.2.1-ae6821b7c64b-x64-release.msi"
+$splunkInstaller = "C:\Desktop\splunkforwarder-9.1.1-64e843ea36b1-x64-release-airgap.msi"
 $inputsConfPath = "C:\Program Files\SplunkUniversalForwarder\etc\system\local\inputs.conf"
 $outputsConfPath = "C:\Program Files\SplunkUniversalForwarder\etc\system\local\outputs.conf"
 
 # Install Splunk Universal Forwarder
-Start-Process -FilePath msiexec -ArgumentList "/i $splunkInstaller /quiet" -Wait
+Start-Process -FilePath msiexec -ArgumentList "/i `"$splunkInstaller`" /quiet" -Wait
 
 # Configure inputs.conf
 @"
@@ -12,13 +12,11 @@ Start-Process -FilePath msiexec -ArgumentList "/i $splunkInstaller /quiet" -Wait
 sourcetype = dns_log
 index = main
 
-
 [monitor://C:\Windows\System32\dhcp\DhcpSrvLog-*.log]
 sourcetype = dhcp_log
 index = main
 
-
-[monitor: C:\Windows\System32\winevt\Logs\Directory Service]
+[monitor://C:\Windows\System32\winevt\Logs\Directory Service]
 sourcetype = ad_log
 index = main
 "@ | Set-Content -Path $inputsConfPath -Force
