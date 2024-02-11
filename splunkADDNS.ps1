@@ -114,5 +114,4 @@ if ($splService.Status -eq 'Running'){  # checks for running splunkd process
 		Write-Host '[!] Then re-run the script...exiting.' -ForegroundColor Yellow
         exit 0
     }
-}
-}
+}}
