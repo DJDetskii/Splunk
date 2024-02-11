@@ -7,17 +7,21 @@ $outputsConfPath = "C:\Program Files\SplunkUniversalForwarder\etc\system\local\o
 Start-Process -FilePath msiexec -ArgumentList "/i $splunkInstaller /quiet" -Wait
 
 # Configure inputs.conf
+@"
 [monitor://C:\Windows\System32\winevt\Logs\Microsoft-Windows-DNSServer%4Analytical.etl]
 sourcetype = dns_log
 index = main
+
 
 [monitor://C:\Windows\System32\dhcp\DhcpSrvLog-*.log]
 sourcetype = dhcp_log
 index = main
 
-[monitor://C:\Windows\System32\winevt\Logs\Directory Service]
+
+[monitor: C:\Windows\System32\winevt\Logs\Directory Service]
 sourcetype = ad_log
 index = main
+"@ | Set-Content -Path $inputsConfPath -Force
 
 # Configure outputs.conf
 @"
